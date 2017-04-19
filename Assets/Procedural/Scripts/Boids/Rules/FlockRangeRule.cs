@@ -16,7 +16,7 @@ class FlockRangeRule : BoidRule
             v += antiCollide * flockingRange / ( antiCollide.magnitude + 0.0001f );
         }
         v /= collisionColliders.Length; v *= flockingStrength;
-        Debug.DrawLine(boid.position, boid.position + v, Color.white);
+        //Debug.DrawLine(boid.position, boid.position + v, Color.white);
         return v;
     }
 }

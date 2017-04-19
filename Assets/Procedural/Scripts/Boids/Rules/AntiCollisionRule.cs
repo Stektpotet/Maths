@@ -20,7 +20,7 @@ public class AntiCollisionRule : BoidRule
             v += antiCollide * collisionRange/(antiCollide.magnitude + 0.0001f);
         }
         v /= collisionColliders.Length; v *= antiCollideStrength;
-        Debug.DrawLine(boid.position, boid.position + v, Color.magenta);
+        //Debug.DrawLine(boid.position, boid.position + v, Color.magenta);
         return v;
     }
 }

@@ -35,7 +35,7 @@ public class TextureMe : MonoBehaviour
         {
             
             for(int x = 0; x < tex.width; x++)
-            { tex.SetPixel(x, y, colorPalette.Evaluate((/*Time.time*timeScale+*/values[x, y]) % 1.0f)); }
+            { tex.SetPixel(x, y, colorPalette.Evaluate(Mathf.Sin((Time.time*timeScale+values[x, y]))*0.5f+0.5f )); }
         }
         tex.Apply();
         tex.filterMode = FilterMode.Point; 

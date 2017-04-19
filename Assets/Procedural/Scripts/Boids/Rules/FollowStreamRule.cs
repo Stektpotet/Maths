@@ -19,7 +19,7 @@ public class FollowStreamRule : BoidRule
             
         percentage = 1.0f - ( 1.0f + Vector2.Dot(
             percievedVelocity.normalized, boid.velocity.normalized) ) * 0.5f;
-        Debug.DrawLine(boid.position, boid.position + percievedVelocity, Color.yellow);
+        //Debug.DrawLine(boid.position, boid.position + percievedVelocity, Color.yellow);
         return percievedVelocity;
     }
 }

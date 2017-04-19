@@ -1,38 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="Boid">
-    <Position X="4.25" Y="5.25" Width="2.5" />
-    <Members>
-      <Method Name="OnDrawGizmos" Hidden="true" />
-    </Members>
+    <Position X="0.75" Y="5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAQEAAAAIqAAIAAAAACAIAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
       <FileName>Assets\Procedural\Scripts\Boids\Boid.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Swarm">
-    <Position X="7" Y="5.25" Width="3" />
-    <Members>
-      <Field Name="groupingRange" Hidden="true" />
-      <Field Name="homeRange" Hidden="true" />
-      <Method Name="OnDrawGizmos" Hidden="true" />
-      <Property Name="swarmRules" Hidden="true" />
-    </Members>
+    <Position X="6.75" Y="5" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAAiAAAAAAAgAAAAAAAAAAAACAAAABAAAAACA=</HashCode>
       <FileName>Assets\Procedural\Scripts\Boids\Swarm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BoidGroup">
-    <Position X="9.25" Y="0.5" Width="3" />
-    <InheritanceLine Type="UnityEngine.MonoBehaviour" ManuallyRouted="true">
+    <Position X="3.5" Y="5" Width="3" />
+    <InheritanceLine Type="UnityEngine.MonoBehaviour" FixedToPoint="true">
       <Path>
-        <Point X="6.75" Y="4" />
-        <Point X="6.75" Y="3.75" />
-        <Point X="7.75" Y="3.75" />
-        <Point X="7.75" Y="3.867" />
-        <Point X="10.75" Y="3.867" />
-        <Point X="10.75" Y="3.79" />
+        <Point X="1.5" Y="3.691" />
+        <Point X="1.5" Y="4.625" />
+        <Point X="3.688" Y="4.625" />
+        <Point X="3.688" Y="5" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -41,28 +30,75 @@
     </TypeIdentifier>
   </Class>
   <Class Name="BoidRule">
-    <Position X="12.5" Y="6" Width="3.5" />
-    <InheritanceLine Type="UnityEngine.MonoBehaviour" ManuallyRouted="true" FixedFromPoint="true">
-      <Path>
-        <Point X="6.75" Y="4" />
-        <Point X="6.75" Y="2.465" />
-        <Point X="12.143" Y="2.465" />
-        <Point X="12.143" Y="6" />
-        <Point X="14.25" Y="6" />
-      </Path>
-    </InheritanceLine>
+    <Position X="4.5" Y="0.5" Width="3.5" />
     <TypeIdentifier>
       <HashCode>QAAAQAgAAXAgAAAACBAAAAAAQAAACAAIAAAAAAAAAQA=</HashCode>
       <FileName>Assets\Procedural\Scripts\Boids\BoidRule.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="AntiCollisionRule">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAGAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Procedural\Scripts\Boids\Rules\AntiCollisionRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClampVelocityRule">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAGAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Assets\Procedural\Scripts\Boids\Rules\ClampVelocityRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FlockRangeRule">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Assets\Procedural\Scripts\Boids\Rules\FlockRangeRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FlockRule">
+    <Position X="8.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Procedural\Scripts\Boids\Rules\FlockRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FlyForwardRule">
+    <Position X="13.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Procedural\Scripts\Boids\Rules\FlyForwardRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FollowStreamRule">
+    <Position X="10" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Procedural\Scripts\Boids\Rules\FollowStreamRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RandomnessRule">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAGAAAAAEAAEAAAAAAAAAAAAAAEBAAAAAAAA=</HashCode>
+      <FileName>Assets\Procedural\Scripts\Boids\Rules\RandomnessRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WindRule">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAGAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Procedural\Scripts\Boids\Rules\WindRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="UnityEngine.MonoBehaviour" Collapsed="true">
-    <Position X="6" Y="4" Width="1.5" />
+    <Position X="0.75" Y="3" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Interface Name="IBoidRule">
-    <Position X="12.5" Y="3.5" Width="3.5" />
+    <Position X="0.75" Y="0.5" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AAAAQAgAAEAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAQA=</HashCode>
       <FileName>Assets\Procedural\Scripts\Boids\BoidRule.cs</FileName>

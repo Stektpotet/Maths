@@ -6,7 +6,7 @@ public class Swarm : BoidGroup
 {
     public GameObject boidPrefab;
 
-    public HashSet<IBoidRule> swarmRules { get { return groupRules; } }
+    public List<IBoidRule> swarmRules { get { return groupRules; } }
     
     public float homeRange = 30f;
     public float groupingRange = 5f;
@@ -19,7 +19,7 @@ public class Swarm : BoidGroup
 
     protected override void FixedUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.Space)) { boids.Add(Instantiate(boidPrefab).GetComponent<Boid>()); }
+        if(Input.GetKeyDown(KeyCode.Space)) { boids.Add(Instantiate(boidPrefab).GetComponent<Boid>()); Debug.Log("count:   " + boids.Count); }
         base.FixedUpdate();
         foreach(Boid boid in boids)
         {

@@ -14,7 +14,7 @@ public class BoidGroup : MonoBehaviour
     public Vector2 direction    { get { return m_velocity.normalized; } } // vel/vel.magnitude
 
     public HashSet<Boid> boids = new HashSet<Boid>();
-    protected HashSet<IBoidRule> groupRules = new HashSet<IBoidRule>();
+    protected List<IBoidRule> groupRules = new List<IBoidRule>();
 
     public float groupRadius = 5;
 

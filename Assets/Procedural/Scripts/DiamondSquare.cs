@@ -68,8 +68,7 @@ public class DiamondSquare
         {
             for(int x = 0; x < m_nodes; x++)
             {
-                m_values[x, y] -= min; //set lowest values = 0
-                m_values[x, y] /= max; //normalize range -> [0-1];
+                m_values[x, y] = (Mathf.Clamp(m_values[x, y], min, max)) / (max - min);
             }
         }
         return m_values;

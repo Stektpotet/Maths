@@ -24,7 +24,7 @@ public class RandomnessRule : BoidRule
         Vector2 v = new Vector2(
         Mathf.Sin(Time.time), Mathf.Cos(Time.time)) *
         Random.Range(minRandomness, maxRandomness);
-        Debug.DrawLine(boid.position, boid.position + v, Color.cyan);
+        //Debug.DrawLine(boid.position, boid.position + v, Color.cyan);
         return v;
     }
 }
