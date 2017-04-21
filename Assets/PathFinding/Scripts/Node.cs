@@ -7,14 +7,16 @@ using System;
 /// </summary>
 public class Node : IHeapable<Node>
 {
+    public Color color;
+
     public Vector3 position;
     public bool traversable;
 
-    private int m_heapIndex;
-    public Dictionary<Node, float> neighbours;
-    public Node parent;
+    private int m_heapIndex = 0;
+    public Dictionary<Node, float> neighbours = new Dictionary<Node, float>();
+    public Node parent = null;
 
-    public float hCost = Mathf.Infinity, gCost = Mathf.Infinity;
+    public float hCost, gCost;
     public float fCost { get { return hCost + gCost; } }
 
     public int heapIndex
@@ -34,4 +36,23 @@ public class Node : IHeapable<Node>
     public float DistanceTo(Node other)
     { return Vector3.Distance(position, other.position); }
     
+    public Node(Vector3 position, bool traversable)
+    {
+        this.position = position;
+        this.traversable = traversable;
+        color = (traversable) ? Color.white : Color.black;
+    }
+    
+    public void AddNeighbours(Node[] neighbours)
+    {
+        foreach(Node n in neighbours)
+        { this.neighbours.Add(n, Vector3.Distance(n.position, position)); }
+    }
+
+    public void ToggleTraversability()
+    {
+        traversable = !traversable;
+        color = (traversable) ? Color.white : Color.black;
+    }
+
 }
