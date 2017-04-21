@@ -53,7 +53,7 @@ public class Navigable : MonoBehaviour, IPointerDownCollision
                 }
                 else
                 {
-                    nodes[x, y] = new Node(new Vector3(x, 0, y), true);
+                    nodes[x, y] = new Node(new Vector3(x, 0, y), UnityEngine.Random.value > 0.2f);
                 }
             }
         }

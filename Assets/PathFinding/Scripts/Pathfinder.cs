@@ -18,47 +18,51 @@ public class Pathfinder : MonoBehaviour, IPointerDownCollision
     Vector3 startPos;
 
     //A*
-    //bool FindPath(Node start, Node end) 
-    //{
+    bool FindPath(Node start, Node end)
+    {
+        System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+        sw.Start();
+        Heap<Node> openHeap = new Heap<Node>(grid.size * grid.size);
+        HashSet<Node> closedSet = new HashSet<Node>();
 
-    //    Heap<Node> openHeap = new Heap<Node>(grid.size * grid.size);
-    //    HashSet<Node> closedSet = new HashSet<Node>();
-        
-    //    Node current;
-    //    openHeap.Add(start);
-    //    start.color = openColor;
-    //    while(openHeap.Count > 0)
-    //    {
-    //        current = openHeap.Pop();
-    //        if (current == end)
-    //        {
-    //            RetracePath(start,end);
-    //            return true; //success! 
-    //        }
+        Node current;
+        openHeap.Add(start);
+        start.color = openColor;
+        while (openHeap.Count > 0)
+        {
+            current = openHeap.Pop();
+            if (current == end)
+            {
+                sw.Stop();
+                Debug.Log("Path found in: " + sw.ElapsedMilliseconds + " ms");
+                RetracePath(start, end);
+                return true; //success! 
+            }
 
-    //        closedSet.Add(current);
-    //        current.color = closedColor;
-    //        foreach(Node n in current.neighbours.Keys)
-    //        {
-    //            if (closedSet.Contains(n) || !n.traversable) 
-    //            { continue; } // skip traversed an nontraversable nodes
-    //            if (!openHeap.Contains(n))
-    //            {
-    //                openHeap.Add(n);
-    //                n.color = openColor;
-    //            }
-    //            float gCost = current.fCost + current.neighbours[n];
-    //            if(gCost < n.gCost)
-    //            {
-    //                n.hCost = n.DistanceTo(end);
-    //                n.gCost = gCost;
-    //                n.parent = current;
-    //            }
-    //        }
-            
-    //    }
-    //    return false;
-    //}
+            closedSet.Add(current);
+            current.color = closedColor;
+            foreach (Node n in current.neighbours.Keys)
+            {
+                if (closedSet.Contains(n) || !n.traversable)
+                { continue; } // skip traversed an nontraversable nodes
+
+                float gCost = current.fCost + current.neighbours[n];
+                if (gCost < n.gCost || !openHeap.Contains(n))
+                {
+                    n.hCost = n.DistanceTo(end);
+                    n.gCost = gCost;
+                    n.parent = current;
+                    if (!openHeap.Contains(n))
+                    {
+                        openHeap.Add(n);
+                        n.color = openColor;
+                    }
+                }
+
+            }
+        }
+        return false;
+    }
     private void RetracePath(Node start, Node end)
     {
         Stack<Node> path = new Stack<Node>();
@@ -75,6 +79,7 @@ public class Pathfinder : MonoBehaviour, IPointerDownCollision
 
     IEnumerator FindPathRoutine(Node start, Node end)
     {
+        
         Heap<Node> openHeap = new Heap<Node>(grid.size*grid.size);
         HashSet<Node> closedSet = new HashSet<Node>();
 
@@ -85,6 +90,7 @@ public class Pathfinder : MonoBehaviour, IPointerDownCollision
         {
             if (current == end)
             {
+                
                 RetracePath(start, end);
                 break;
             }
@@ -175,8 +181,8 @@ public class Pathfinder : MonoBehaviour, IPointerDownCollision
         clickCount++;
         if(isPathSet)
         {
-            StartCoroutine(FindPathRoutine(grid.WorldPositionToNode(startPos), grid.WorldPositionToNode(clickHit)));
-            //FindPath(grid.WorldPositionToNode(startPos), grid.WorldPositionToNode(clickHit));
+            //StartCoroutine(FindPathRoutine(grid.WorldPositionToNode(startPos), grid.WorldPositionToNode(clickHit)));
+            FindPath(grid.WorldPositionToNode(startPos), grid.WorldPositionToNode(clickHit));
         }
         else
         {
