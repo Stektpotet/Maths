@@ -12,6 +12,10 @@ public class Pathfinder : MonoBehaviour, IPointerDownCollision
     public Color openColor = Color.green;
     public Color closedColor = Color.red;
     public Color pathColor =  Color.blue;
+
+    public Gradient open;
+
+    //public float maxDist { get { return Mathf.Sqrt(2 * grid.size * grid.size); } }
     
     int clickCount = 0;
     bool isPathSet { get { return clickCount % 2 == 0 && clickCount > 0; } }
@@ -22,7 +26,7 @@ public class Pathfinder : MonoBehaviour, IPointerDownCollision
     {
         System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
         sw.Start();
-        Heap<Node> openHeap = new Heap<Node>(grid.size * grid.size);
+        Heap<Node> openHeap = new Heap<Node>(grid.nodeCount);
         HashSet<Node> closedSet = new HashSet<Node>();
 
         Node current;
@@ -80,7 +84,7 @@ public class Pathfinder : MonoBehaviour, IPointerDownCollision
     IEnumerator FindPathRoutine(Node start, Node end)
     {
         
-        Heap<Node> openHeap = new Heap<Node>(grid.size*grid.size);
+        Heap<Node> openHeap = new Heap<Node>(grid.nodeCount);
         HashSet<Node> closedSet = new HashSet<Node>();
 
         Node current = start;
@@ -96,6 +100,7 @@ public class Pathfinder : MonoBehaviour, IPointerDownCollision
             }
 
             closedSet.Add(current);
+            //current.color = open.Evaluate(current.hCost/maxDist);
             current.color = closedColor;
 
             foreach (Node n in current.neighbours.Keys)
@@ -119,61 +124,12 @@ public class Pathfinder : MonoBehaviour, IPointerDownCollision
                     //else
                     //{ openHeap.Update(n); }
                 }
-                yield return null;
             }
+            yield return null;
             current = openHeap.Pop();
             //Debug.Log(current.fCost);
             //current.color = Color.cyan;
         }
-    }
-
-    IEnumerator FindPathRoutineList(Node start, Node end)
-    {
-        List<Node> openSet = new List<Node>();
-        HashSet<Node> closedSet = new HashSet<Node>();
-
-        Node current = start;
-        openSet.Add(start);
-        start.color = openColor;
-        while (openSet.Count > 0)
-        {
-            for(int i=1;i<openSet.Count;i++)
-            {
-                if (openSet[i].fCost < current.fCost || openSet[i].fCost == current.fCost && openSet[i].hCost < current.hCost)
-                {
-                    current = openSet[i];
-                }
-            }
-            openSet.Remove(current);
-            closedSet.Add(current);
-            current.color = closedColor;
-
-            if (current == end)
-            {
-                RetracePath(start, end);
-                break;
-            }
-
-            foreach(Node n in current.neighbours.Keys)
-            {
-                if(!n.traversable || closedSet.Contains(n))
-                {
-                    continue;
-                }
-                float newGCost = current.gCost + current.neighbours[n];
-                if(newGCost < n.gCost || !openSet.Contains(n))
-                {
-                    n.gCost = newGCost;
-                    n.hCost = n.DistanceTo(end);
-                    n.parent = current;
-                    if(!openSet.Contains(n))
-                    { openSet.Add(n); }
-                }
-            }
-           
-            //current.color = Color.cyan;
-        }
-        yield return null;
     }
 
     public void OnPointerDown(Vector3 clickHit)
@@ -181,8 +137,8 @@ public class Pathfinder : MonoBehaviour, IPointerDownCollision
         clickCount++;
         if(isPathSet)
         {
-            //StartCoroutine(FindPathRoutine(grid.WorldPositionToNode(startPos), grid.WorldPositionToNode(clickHit)));
-            FindPath(grid.WorldPositionToNode(startPos), grid.WorldPositionToNode(clickHit));
+            StartCoroutine(FindPathRoutine(grid.WorldPositionToNode(startPos), grid.WorldPositionToNode(clickHit)));
+            //FindPath(grid.WorldPositionToNode(startPos), grid.WorldPositionToNode(clickHit));
         }
         else
         {
