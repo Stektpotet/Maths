@@ -34,7 +34,10 @@ public class Node : IHeapable<Node>
     }
 
     public float DistanceTo(Node other)
-    { return Vector3.Distance(position, other.position); }
+    {
+        Vector3 dist = position - other.position;
+        return Mathf.Abs(dist.x) + Mathf.Abs(dist.z);
+    }
     
     public Node(Vector3 position, bool traversable)
     {
@@ -43,10 +46,10 @@ public class Node : IHeapable<Node>
         color = (traversable) ? Color.white : Color.black;
     }
     
-    public void AddNeighbours(Node[] neighbours)
+    public void AddNeighbours(params Node[] neighbours)
     {
         foreach(Node n in neighbours)
-        { this.neighbours.Add(n, Vector3.Distance(n.position, position)); }
+        { this.neighbours.Add(n, DistanceTo(n)); }
     }
 
     public void ToggleTraversability()

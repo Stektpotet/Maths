@@ -69,16 +69,21 @@ public class Pathfinder : MonoBehaviour, IPointerDownCollision
     }
     private void RetracePath(Node start, Node end)
     {
-        Stack<Node> path = new Stack<Node>();
+        List<Node> path = new List<Node>();
         Node current = end;
         while (current != start)
         {
-            path.Push(current);
+            path.Add(current);
             current = current.parent;
             current.color = pathColor;
         }
-        path.Push(current);
+        path.Add(current);
         current.color = Color.magenta;
+        end.color = Color.magenta;
+        for (int i = 0; i < path.Count-1; i++)
+        {
+            Debug.DrawLine(path[i].position, path[i + 1].position, Color.red,3);
+        }
     }
 
     IEnumerator FindPathRoutine(Node start, Node end)
@@ -125,7 +130,7 @@ public class Pathfinder : MonoBehaviour, IPointerDownCollision
                     //{ openHeap.Update(n); }
                 }
             }
-            yield return null;
+            yield return new WaitForSeconds(0);
             current = openHeap.Pop();
             //Debug.Log(current.fCost);
             //current.color = Color.cyan;
@@ -137,8 +142,8 @@ public class Pathfinder : MonoBehaviour, IPointerDownCollision
         clickCount++;
         if(isPathSet)
         {
-            StartCoroutine(FindPathRoutine(grid.WorldPositionToNode(startPos), grid.WorldPositionToNode(clickHit)));
-            //FindPath(grid.WorldPositionToNode(startPos), grid.WorldPositionToNode(clickHit));
+            //StartCoroutine(FindPathRoutine(grid.WorldPositionToNode(startPos), grid.WorldPositionToNode(clickHit)));
+            FindPath(grid.WorldPositionToNode(startPos), grid.WorldPositionToNode(clickHit));
         }
         else
         {

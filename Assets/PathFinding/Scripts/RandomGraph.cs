@@ -45,15 +45,19 @@ public class RandomGraph : Navigable
         foreach(Node n in m_nodes)
         {
             List<Node> neighbours = new List<Node>(maxNeighbours);
+
             for(int i=0; i < Random.Range(0,maxNeighbours); i++)
             {
                 int randomIndex;
                 do
                 { randomIndex = Random.Range(0, m_nodeCount); }
-                while(m_nodes[randomIndex] != n || neighbours.Contains(m_nodes[randomIndex]));
+                while(m_nodes[randomIndex] == n || neighbours.Contains(m_nodes[randomIndex]));
                 neighbours.Add(m_nodes[randomIndex]);
             }
             n.AddNeighbours(neighbours.ToArray());
+
+            foreach (Node m in neighbours)
+            { m.AddNeighbours(n); }
         }
     }
 
