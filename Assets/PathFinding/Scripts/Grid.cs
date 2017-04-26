@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 /// Navigable - Created by Halvor, DESKTOP-A2KUJ84 @ 4/17/2017 10:48:25 PM
 /// 
 /// </summary>
-public class Grid : Navigable
+public class Grid : Network
 {
     public int size = 32; 
     public Node this[int x, int y]
@@ -39,27 +39,33 @@ public class Grid : Navigable
         CreateNodes();
     }
 
-
+    protected override void SetupNetwork()
+    {
+        CreateNodes();
+        ConnectNodes();
+    }
     protected void CreateNodes()
     {
         for(int y = 0; y < size; y++)
         {
             for(int x = 0; x < size; x++)
             {
-                if(x == 0 || x == size - 1 || y == 0 || y == size - 1)
+                if(x == 0 || x == size - 1 || y == 0 || y == size - 1)//edge
                 {
-                    this[x, y] = new Node(new Vector3(x, 0, y), false);
+                    this[x, y] = new Node(new Vector3(x, 0, y), false);//false -> nontraversable
                 }
                 else
                 {
-                    this[x, y] = new Node(new Vector3(x, 0, y), UnityEngine.Random.value > 0.2f);
+                    this[x, y] = new Node(new Vector3(x, 0, y),
+                        !((y % 2 * UnityEngine.Random.value < .5) && ((y % 4) + x < size) && ((y % 4) + x > 1)) || UnityEngine.Random.value > 0.9f ||
+                        !((x % 2 * UnityEngine.Random.value < .5) && ((x % 4) + x < size) && ((x % 4) + x > 1)) || UnityEngine.Random.value > 0.9f);
                 }
             }
         }
     }
     /// <summary>
-    /// Creates the Network/Graph
-    /// </summary>
+    /// Connects nodes to make it a grid-graph
+    /// /// </summary>
     protected void ConnectNodes()
     {
         for(int y = 0; y < size; y++)
@@ -92,11 +98,7 @@ public class Grid : Navigable
         }
     }
 
-    protected override void SetupNetwork()
-    {
-        CreateNodes();
-        ConnectNodes();
-    }
+    
 
     public override Node WorldPositionToNode(Vector3 position)
     { return this[WorldPositionToIndex2D(position)]; }

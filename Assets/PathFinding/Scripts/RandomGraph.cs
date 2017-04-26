@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 /// Navigable - Created by Halvor, DESKTOP-A2KUJ84 @ 4/17/2017 10:48:25 PM
 /// 
 /// </summary>
-public class RandomGraph : Navigable
+public class RandomGraph : Network
 {
     public Bounds bounds = new Bounds(Vector3.zero, Vector3.one*10);
     public int m_nodeCount = 100;

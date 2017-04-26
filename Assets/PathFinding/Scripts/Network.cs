@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 /// Navigable - Created by Halvor, DESKTOP-A2KUJ84 @ 4/17/2017 10:48:25 PM
 /// 
 /// </summary>
-public abstract class Navigable : MonoBehaviour, IPointerDownCollision
+public abstract class Network : MonoBehaviour, IPointerDownCollision
 {
     protected Node[] m_nodes;
 
@@ -44,13 +44,15 @@ public abstract class Navigable : MonoBehaviour, IPointerDownCollision
         return closest;
     }
 
-    protected void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
-        foreach(Node n in m_nodes)
+        for (int i = 0; i < nodeCount; i++)
         {
+            Node n = m_nodes[i];
             Gizmos.color = n.color;
-            Gizmos.DrawCube(n.position, Vector3.one * 0.75f);
+            Gizmos.DrawCube(n.position, Vector3.one);
         }
     }
+
 }
 

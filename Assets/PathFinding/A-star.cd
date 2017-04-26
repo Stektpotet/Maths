@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Network">
+    <Position X="7.75" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAICAAAAAAAAAAAAAAAAIAABAAAAAAAAAA=</HashCode>
+      <FileName>Assets\PathFinding\Scripts\Network.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="m_nodes" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Grid">
+    <Position X="10" Y="3" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="Grid.Index2D">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\PathFinding\Scripts\Grid.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACIACAAACIECAAAAAAAAAIAAAAAQAAAAAAA=</HashCode>
+      <FileName>Assets\PathFinding\Scripts\Grid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Node">
+    <Position X="5" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAEBAAACATAAAAAIAAAAAAACACAQAAAAAAAAEE=</HashCode>
+      <FileName>Assets\PathFinding\Scripts\Node.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Pathfinder">
+    <Position X="12.25" Y="3" Width="1.5" />
+    <Members>
+      <Field Name="clickCount" Hidden="true" />
+      <Property Name="isPathSet" Hidden="true" />
+      <Field Name="startPos" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIAACAAABgIIAACAAMEAAgkAAAAAAIAAAAAAACAAAAI=</HashCode>
+      <FileName>Assets\PathFinding\Scripts\Pathfinder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UnityEngine.MonoBehaviour" Collapsed="true">
+    <Position X="12.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Heap&lt;T&gt;">
+    <Position X="14" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAACAAAAQAAAgAAAQAAACBCAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Assets\Util\Heap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="IPointerDownCollision">
+    <Position X="10" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Util\PointerDownCollisionMessager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IHeapable&lt;T&gt;">
+    <Position X="5.75" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Util\Heap.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="System.IComparable&lt;T&gt;">
+    <Position X="7.75" Y="1.25" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -16,6 +16,10 @@ public class Node : IHeapable<Node>
     public Dictionary<Node, float> neighbours = new Dictionary<Node, float>();
     public Node parent = null;
 
+    public float weight { get { return m_weight; } set { m_weight = value; } }
+
+    float m_weight = 0;
+
     public float hCost, gCost;
     public float fCost { get { return hCost + gCost; } }
 
@@ -34,10 +38,7 @@ public class Node : IHeapable<Node>
     }
 
     public float DistanceTo(Node other)
-    {
-        Vector3 dist = position - other.position;
-        return Mathf.Abs(dist.x) + Mathf.Abs(dist.z);
-    }
+    { return Vector3.Distance(position, other.position); }
     
     public Node(Vector3 position, bool traversable)
     {
@@ -49,7 +50,7 @@ public class Node : IHeapable<Node>
     public void AddNeighbours(params Node[] neighbours)
     {
         foreach(Node n in neighbours)
-        { this.neighbours.Add(n, DistanceTo(n)); }
+        { this.neighbours.Add(n, DistanceTo(n) + weight ); }
     }
 
     public void ToggleTraversability()
